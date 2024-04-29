@@ -6,7 +6,7 @@
 #    By: makoch-l <makoch-l@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/26 16:46:19 by makoch-l          #+#    #+#              #
-#    Updated: 2024/04/29 22:17:11 by makoch-l         ###   ########.fr        #
+#    Updated: 2024/04/30 00:25:19 by makoch-l         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ RM = rm -f
 
 ### SOURCE FILES ###
 
-SOURCES = server.c client.c
+SOURCES = client.c server.c
 
 ### OBJECT FILES ###
 
@@ -26,13 +26,13 @@ OBJECTS = $(SOURCES:.c=.o)
 
 ### RULES ###
 
-all: server client
-
-server: server.o libft
-		$(CC) -o $@ $< -Llibft -lft
+all: client server
 
 client: client.o libft
-		$(CC) -o $@ $< -Llibft -lft
+		$(CC) -o $@ $< -Llibft
+
+server: server.o libft
+		$(CC) -o $@ $< -Llibft
 
 %.o: %.c
 		$(CC) -c $(CFLAGS) $?
