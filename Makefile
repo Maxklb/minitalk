@@ -6,7 +6,7 @@
 #    By: makoch-l <makoch-l@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/26 16:46:19 by makoch-l          #+#    #+#              #
-#    Updated: 2024/04/29 18:18:16 by makoch-l         ###   ########.fr        #
+#    Updated: 2024/04/29 22:17:11 by makoch-l         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,35 +14,39 @@
 
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror
-
-### EXECUTABLE ###
-
-CLIENT_NAME = client
-SERVER_NAME = server 
-
-### INCLUDES ###
-
-LIBFT_PATH = libft/
-LIBFT_LIB = libft.a
-LIBFT_OBJS = $(LIBFT_PATH)*.o
+RM = rm -f
 
 ### SOURCE FILES ###
 
-CLIENT_SRCS = client.c
-SERVER_SRCS = server.c
+SOURCES = server.c client.c
+
+### OBJECT FILES ###
+
+OBJECTS = $(SOURCES:.c=.o)
 
 ### RULES ###
 
-all: $(CLIENT_NAME) $(SERVER_NAME)
+all: server client
 
-$(CLIENT_NAME): $(CLIENT_SRCS) $(LIBFT_LIB)
-		$(CC) $(CFLAGS) -o $@ $(CLIENT_SRCS) $(LIBFT_LIB) -lft
+server: server.o libft
+		$(CC) -o $@ $< -Llibft -lft
 
+client: client.o libft
+		$(CC) -o $@ $< -Llibft -lft
 
-LIBFTMAKE = $(MAKE) -C $(LIBFT_PATH)
+%.o: %.c
+		$(CC) -c $(CFLAGS) $?
 
-fclean: 
+libft:
+		make -C libft
+
+clean:
+		$(RM) $(OBJECTS)
+		make -C libft clean
+
+fclean: clean
+		$(RM) server client libft/libft.a
 
 re: fclean all
 
-.PHONY: all clean fclean re
+.PHONY: all libft clean fclean re
