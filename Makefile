@@ -6,7 +6,7 @@
 #    By: makoch-l <makoch-l@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/26 16:46:19 by makoch-l          #+#    #+#              #
-#    Updated: 2024/04/30 00:25:19 by makoch-l         ###   ########.fr        #
+#    Updated: 2024/04/30 18:11:21 by makoch-l         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,10 +29,10 @@ OBJECTS = $(SOURCES:.c=.o)
 all: client server
 
 client: client.o libft
-		$(CC) -o $@ $< -Llibft
+		$(CC) -o $@ $< -Llibft -lft
 
 server: server.o libft
-		$(CC) -o $@ $< -Llibft
+		$(CC) -o $@ $< -Llibft -lft
 
 %.o: %.c
 		$(CC) -c $(CFLAGS) $?
