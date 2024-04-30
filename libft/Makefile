@@ -6,7 +6,7 @@
 #    By: makoch-l <makoch-l@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/22 01:46:15 by makoch-l          #+#    #+#              #
-#    Updated: 2023/11/22 14:57:36 by makoch-l         ###   ########.fr        #
+#    Updated: 2024/04/30 15:48:24 by makoch-l         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,7 +45,15 @@ SRCS =  ft_atoi.c \
 		ft_substr.c \
 		ft_tolower.c \
 		ft_toupper.c \
-		ft_calloc.c
+		ft_calloc.c \
+		ft_printf.c \
+		print_char.c \
+		print_hex.c \
+		print_int.c \
+		print_percent.c \
+		print_pointer.c \
+		print_string.c \
+		print_unsigned.c
 
 OBJS = $(SRCS:.c=.o) 
 

@@ -6,7 +6,7 @@
 /*   By: makoch-l <makoch-l@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 19:15:56 by makoch-l          #+#    #+#             */
-/*   Updated: 2023/11/28 16:37:43 by makoch-l         ###   ########.fr       */
+/*   Updated: 2024/04/30 15:49:28 by makoch-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,16 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <stddef.h>
+# include <stdarg.h>
 
+int		ft_printf(const char *str, ...);
+int		print_char(char c);
+int		print_hex(unsigned int value, int asc);
+int		print_int(int n);
+int		print_percent(void);
+int		print_pointer(unsigned long long ptr);
+int		print_string(char *str);
+int		print_unsigned(unsigned int nb);
 int		ft_atoi(const char *str);
 int		ft_isalnum(int c);
 int		ft_isalpha(int c);
