@@ -6,7 +6,7 @@
 /*   By: makoch-l <makoch-l@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 16:46:22 by makoch-l          #+#    #+#             */
-/*   Updated: 2024/04/30 18:07:03 by makoch-l         ###   ########.fr       */
+/*   Updated: 2024/05/02 20:51:20 by makoch-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	sig_handle(int sig)
 	static unsigned char	buff;
 	static int				i;
 
-	buff = (sig == SIGUSR1);
+	buff |= (sig == SIGUSR1);
 	i++;
 	if (i == 8)
 	{

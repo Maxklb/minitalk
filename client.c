@@ -6,26 +6,51 @@
 /*   By: makoch-l <makoch-l@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 16:46:24 by makoch-l          #+#    #+#             */
-/*   Updated: 2024/04/30 17:26:50 by makoch-l         ###   ########.fr       */
+/*   Updated: 2024/05/02 20:59:06 by makoch-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft/libft.h"
 #include <signal.h>
-#include <stdio.h>
 
-// void	send_signal(int pid, unsigned char character)
-// {
-// 	// int				i;
-// 	// unsigned char	temp_char;
+void	send_sig(int pid, unsigned char character)
+{
+	unsigned char	buff;
+	int				i;
 
-// 	// printf('hey');
-// 	// i = 8; // 8 bits dans 1 octet
+	i = 8; //8 bits dans 1 octet
+	buff = character;
+	while (i > 0)
+	{
+		i--;
+		buff = character >> i;
+		if (buff % 2 == 0)
+			kill(pid, SIGUSR2);
+		else
+			kill(pid, SIGUSR1);
+		usleep(100);
+	}
+}
 
-// 	// kill(pid, SIGUSR2);
-// 	// kill(pid, SIGUSR1);
-// }
-
-int main() {
-	printf("client");
+int main(int argc, char *argv[]) 
+{
+	int		client_id;
+	int		i;
+	char	*str;
+	
+	client_id = ft_atoi(argv[1]);
+	str = argv[2];
+	i = 0;
+	if (argc != 3)
+	{
+		ft_printf("Number of parameters is incorrect");
+		exit(0);
+	}
+	while(str[i])
+	{
+		send_sig(client_id, str[i]);
+		i++;
+	}
+	send_sig(client_id, '\0');
+	return (0);
 }
