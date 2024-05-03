@@ -6,7 +6,7 @@
 /*   By: makoch-l <makoch-l@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 16:46:24 by makoch-l          #+#    #+#             */
-/*   Updated: 2024/05/02 20:59:06 by makoch-l         ###   ########.fr       */
+/*   Updated: 2024/05/03 15:04:13 by makoch-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	send_sig(int pid, unsigned char character)
 	unsigned char	buff;
 	int				i;
 
-	i = 8; //8 bits dans 1 octet
+	i = 8;
 	buff = character;
 	while (i > 0)
 	{
@@ -28,16 +28,16 @@ void	send_sig(int pid, unsigned char character)
 			kill(pid, SIGUSR2);
 		else
 			kill(pid, SIGUSR1);
-		usleep(100);
+		usleep(42);
 	}
 }
 
-int main(int argc, char *argv[]) 
+int	main(int argc, char *argv[])
 {
 	int		client_id;
 	int		i;
 	char	*str;
-	
+
 	client_id = ft_atoi(argv[1]);
 	str = argv[2];
 	i = 0;
@@ -46,7 +46,7 @@ int main(int argc, char *argv[])
 		ft_printf("Number of parameters is incorrect");
 		exit(0);
 	}
-	while(str[i])
+	while (str[i])
 	{
 		send_sig(client_id, str[i]);
 		i++;
